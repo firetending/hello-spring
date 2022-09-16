@@ -9,36 +9,36 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class HelloController {
 
-//    handles requests at path /hello
-    @GetMapping("hello")
-    @ResponseBody
-    public String Hello() {
-        return "Hello, Spring!";
-    }
-
-    @GetMapping("goodbye")
-    @ResponseBody
-    public String Goodbye() {
-        return "Goodbye, Spring!";
-    }
-
-//    // handler for requests of the for /hello?name=LaunchCode
+////    handles requests at path /hello
 //    @GetMapping("hello")
 //    @ResponseBody
-//    public String helloWithQueryParam(@RequestParam String name) {
-//        return "Hello, " + name + "!";
+//    public String Hello() {
+//        return "Hello, Spring!";
 //    }
-//
-//    // handler for requests of the for /hello/LaunchCode
-//    @GetMapping("hello/{name}")
+
+//    @GetMapping("goodbye")
 //    @ResponseBody
-//    public String helloWithPathVariable(@PathVariable String name) {
-//        return "Hello, " + name + "!";
+//    public String Goodbye() {
+//        return "Goodbye, Spring!";
 //    }
-//
-//    // handler that redirects to a path rather than using @ResponseBody
-//    @GetMapping("helloRE")
-//    public String helloRedirect() {
-//        return "redirect:/hello/gotcha";
-//    }
+
+    // handler for requests of the for /hello?name=LaunchCode
+    @GetMapping("hello")
+    @ResponseBody
+    public String helloWithQueryParam(@RequestParam String name) {
+        return "Hello, " + name + "!";
+    }
+
+    // handler for requests of the for /hello/LaunchCode
+    @GetMapping("hello/{name}")
+    @ResponseBody
+    public String helloWithPathVariable(@PathVariable String name) {
+        return "Hello, " + name + "!";
+    }
+
+    // handler that redirects to a path rather than using @ResponseBody
+    @GetMapping("helloRE")
+    public String helloRedirect() {
+        return "redirect:/hello/gotcha";
+    }
 }
