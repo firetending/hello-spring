@@ -4,6 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
+@ResponseBody
+@RequestMapping("hello")
 public class HelloController {
 
 ////    handles requests at path /hello
@@ -13,25 +15,23 @@ public class HelloController {
 //        return "Hello, Spring!";
 //    }
 
-//    @GetMapping("goodbye")
-//    @ResponseBody
-//    public String Goodbye() {
-//        return "Goodbye, Spring!";
-//    }
+    // path is /hello/goodbye since RequestMapping was added to the class
+    @GetMapping("goodbye")
+    public String Goodbye() {
+        return "Goodbye, Spring!";
+    }
 
     // handler for requests of the for /hello?name=LaunchCode
-    @RequestMapping(method = {RequestMethod.GET, RequestMethod.POST}, value = "hello")
-    @ResponseBody
+    @RequestMapping(method = {RequestMethod.GET, RequestMethod.POST})
     public String helloWithQueryParam(@RequestParam String name) {
         return "Hello, " + name + "!";
     }
 
-//    // handler for requests of the for /hello/~~~~
-//    @GetMapping("hello/{name}")
-//    @ResponseBody
-//    public String helloWithPathVariable(@PathVariable String name) {
-//        return "Hello, " + name + "!";
-//    }
+    // handler for requests of the for /hello/~~~~
+    @GetMapping("{name}")
+    public String helloWithPathVariable(@PathVariable String name) {
+        return "Hello, " + name + "!";
+    }
 //
 //    // handler that redirects to a path rather than using @ResponseBody
 //    @GetMapping("helloRE")
@@ -39,8 +39,8 @@ public class HelloController {
 //        return "redirect:/hello/gotcha";
 //    }
 
+    // lives at /hello/form
     @GetMapping("form")
-    @ResponseBody
     public String helloForm() {
         return "<html>" +
                 "<body>" +
